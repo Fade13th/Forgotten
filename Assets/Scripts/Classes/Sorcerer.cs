@@ -44,14 +44,10 @@ public class Sorcerer : Classes {
     void Update () {
 		if (Input.GetKeyDown(KeyCode.T)) {
             SaveLoad.Save();
-
-            print("Save");
         }
 
         if (Input.GetKeyDown(KeyCode.Y)) {
             SaveLoad.Load();
-
-            print("Load");
         }
 	}
 }

@@ -7,13 +7,17 @@ public class TitleScreen : MonoBehaviour {
 
     Button newGame;
     Button load;
+    CanvasGroup canvas;
     CanvasGroup newGameCanvas;
     CanvasGroup loadCanvas;
+
+    public GameObject button;
 
 	// Use this for initialization
 	void Start () {
         newGame = GameObject.Find("NewGame").GetComponent<Button>();
         load = GameObject.Find("Load").GetComponent<Button>();
+        canvas = GetComponent<CanvasGroup>();
         newGameCanvas = GameObject.Find("Name").GetComponent<CanvasGroup>();
         loadCanvas = GameObject.Find("LoadCanvas").GetComponent<CanvasGroup>();
 	}
@@ -30,13 +34,49 @@ public class TitleScreen : MonoBehaviour {
         game.name = name;
 
         SaveLoad.Save();
+
+        LoadGame(game);
     }
 
     public void Load() {
+        foreach (Button b in loadCanvas.GetComponentsInChildren<Button>()) {
+            if (b.name != "Close") {
+                Destroy(b.gameObject);
+            }
+        }
+
         SaveLoad.Load();
 
         loadCanvas.alpha = 1;
         loadCanvas.blocksRaycasts = true;
+
+        float y = 0;
+
+        foreach (Game game in SaveLoad.savedGames) {
+            GameObject b = Instantiate(button);
+            b.transform.parent = loadCanvas.transform;
+            b.transform.localPosition = new Vector2(0, y);
+            b.gameObject.GetComponentInChildren<Text>().text = game.name;
+
+            y += 40;
+
+            b.GetComponent<Button>().onClick.AddListener(delegate { LoadGame(game); });
+        }
+    }
+
+    private void LoadGame(Game game) {
+        canvas.alpha = 0;
+        canvas.blocksRaycasts = false;
+
+        SaveLoad.LoadGame(game);
+    }
+
+    public void Close() {
+        newGameCanvas.alpha = 0;
+        newGameCanvas.blocksRaycasts = false;
+
+        loadCanvas.alpha = 0;
+        loadCanvas.blocksRaycasts = false;
     }
 	
 	// Update is called once per frame

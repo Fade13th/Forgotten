@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour {
+public class Entity {
     [SerializeField] protected int Str; //Melee damage and natural armour
     [SerializeField] protected int Dex; //Ranged weapon damage and dodge
     [SerializeField] protected int Con; //Health

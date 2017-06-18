@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Party : MonoBehaviour {
+[System.Serializable]
+public class Party {
 
     [SerializeField] protected int maxSize = 4;
     protected int size = 0;

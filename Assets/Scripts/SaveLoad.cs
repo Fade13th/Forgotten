@@ -26,4 +26,8 @@ public static class SaveLoad {
             file.Close();
         }
     }
+
+    public static void LoadGame(Game g) {
+
+    }
 }
