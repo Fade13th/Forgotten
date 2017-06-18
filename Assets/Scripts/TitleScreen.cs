@@ -30,10 +30,9 @@ public class TitleScreen : MonoBehaviour {
     public void CreateNewGame() {
         string name = GameObject.Find("NewGameName").GetComponent<InputField>().text;
 
-        Game game = new Game();
-        game.name = name;
+        Game game = new Game(name);
 
-        SaveLoad.Save();
+        SaveLoad.Save(game);
 
         LoadGame(game);
     }
@@ -53,6 +52,8 @@ public class TitleScreen : MonoBehaviour {
         float y = 0;
 
         foreach (Game game in SaveLoad.savedGames) {
+            MonoBehaviour.print(game);
+
             GameObject b = Instantiate(button);
             b.transform.parent = loadCanvas.transform;
             b.transform.localPosition = new Vector2(0, y);

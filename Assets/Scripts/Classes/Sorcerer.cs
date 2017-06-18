@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Sorcerer : Classes {
 
 	// Use this for initialization
-	void Start () {
+	public Sorcerer () {
         Str = 6 + (Roll.d6() - 3);
         Dex = 10 + (Roll.d6() - 3);
         Con = 8 + (Roll.d6() - 3);
@@ -42,12 +43,6 @@ public class Sorcerer : Classes {
 
     // Update is called once per frame
     void Update () {
-		if (Input.GetKeyDown(KeyCode.T)) {
-            SaveLoad.Save();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Y)) {
-            SaveLoad.Load();
-        }
+		
 	}
 }

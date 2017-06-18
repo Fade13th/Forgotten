@@ -5,11 +5,14 @@ using System.Collections;
 public class Game {
 
     public static Game current;
-    Party party;
+    public Dungeon currDungeon;
+    public Guild guild;
     public string name;
 
-    public Game() {
-        party = new Party();
+    public Game(string name) {
+        this.name = name;
+        currDungeon = new Dungeon();
+        guild = new Guild();
 
         current = this;
     }

@@ -9,13 +9,30 @@ public static class SaveLoad {
     public static List<Game> savedGames = new List<Game>();
 
     //it's static so we can call it from anywhere
-    public static void Save() {
-        SaveLoad.savedGames.Add(Game.current);
+    public static void Save(Game game) {
+        Load();
+
+        List<Game> copy = new List<Game>();
+        MonoBehaviour.print(SaveLoad.savedGames.Count);
+
+        foreach (Game g in SaveLoad.savedGames) {
+            if (g.name == game.name) {
+                copy.Add(g);
+            }
+        }
+
+        foreach (Game g in copy) {
+            SaveLoad.savedGames.Remove(g);
+        }
+
+        SaveLoad.savedGames.Add(game);
         BinaryFormatter bf = new BinaryFormatter();
         //Application.persistentDataPath is a string, so if you wanted you can put that into debug.log if you want to know where save games are located
         FileStream file = File.Create(Application.persistentDataPath + "/savedGames.gd"); //you can call it anything you want
         bf.Serialize(file, SaveLoad.savedGames);
-        file.Close();
+        file.Close();        
+
+        MonoBehaviour.print(SaveLoad.savedGames.Count);
     }
 
     public static void Load() {
@@ -28,6 +45,6 @@ public static class SaveLoad {
     }
 
     public static void LoadGame(Game g) {
-
+        GameManager.game = g;
     }
 }

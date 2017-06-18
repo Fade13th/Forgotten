@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Entity {
-    [SerializeField] protected int Str; //Melee damage and natural armour
+    [SerializeField] public int Str; //Melee damage and natural armour
     [SerializeField] protected int Dex; //Ranged weapon damage and dodge
     [SerializeField] protected int Con; //Health
 	[SerializeField] protected int Int; //Magic resist and damage
