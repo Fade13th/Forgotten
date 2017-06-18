@@ -13,10 +13,10 @@ public static class SaveLoad {
         Load();
 
         List<Game> copy = new List<Game>();
-        MonoBehaviour.print(SaveLoad.savedGames.Count);
 
         foreach (Game g in SaveLoad.savedGames) {
-            if (g.name == game.name) {
+            MonoBehaviour.print(g);
+            if (g.name == GameManager.game.name) {
                 copy.Add(g);
             }
         }
@@ -31,8 +31,6 @@ public static class SaveLoad {
         FileStream file = File.Create(Application.persistentDataPath + "/savedGames.gd"); //you can call it anything you want
         bf.Serialize(file, SaveLoad.savedGames);
         file.Close();        
-
-        MonoBehaviour.print(SaveLoad.savedGames.Count);
     }
 
     public static void Load() {
@@ -46,5 +44,6 @@ public static class SaveLoad {
 
     public static void LoadGame(Game g) {
         GameManager.game = g;
+        g.LoadDetails();
     }
 }

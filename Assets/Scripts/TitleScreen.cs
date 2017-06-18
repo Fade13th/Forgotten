@@ -31,6 +31,8 @@ public class TitleScreen : MonoBehaviour {
         string name = GameObject.Find("NewGameName").GetComponent<InputField>().text;
 
         Game game = new Game(name);
+        game.CreatePlayer(name);
+        GameManager.game = game;
 
         SaveLoad.Save(game);
 

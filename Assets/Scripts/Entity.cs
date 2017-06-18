@@ -4,59 +4,61 @@ using UnityEngine;
 
 [System.Serializable]
 public class Entity {
-    [SerializeField] public int Str; //Melee damage and natural armour
-    [SerializeField] protected int Dex; //Ranged weapon damage and dodge
-    [SerializeField] protected int Con; //Health
-	[SerializeField] protected int Int; //Magic resist and damage
-    [SerializeField] protected int Will; //Stamina and sanity
-    [SerializeField] protected int End; //Resistance to effects and sanity
+    public string name;
 
-    protected int speed;
+    [SerializeField] public int Str; //Melee damage and natural armour
+    [SerializeField] public int Dex; //Ranged weapon damage and dodge
+    [SerializeField] public int Con; //Health
+	[SerializeField] public int Int; //Magic resist and damage
+    [SerializeField] public int Will; //Stamina and sanity
+    [SerializeField] public int End; //Resistance to effects and sanity
+
+    public int speed;
 
     protected int healthMax;
-    protected int health;
+    public int health;
     protected Roll.roll hitDie { get; set; }
     protected int hitDieCount { get; set; }
 
     protected int sanityMax;
-    protected int sanity;
+    public int sanity;
     protected Roll.roll sanityDie { get; set; }
     protected int sanityDieCount { get; set; }
 
-    protected int level = 1;
-    protected int exp = 0;
+    public int level = 1;
+    public int exp = 0;
 
-    protected int initiative;
+    public int initiative;
 
-    protected int AR;
-    protected int SR;
-    protected int BAB;
-    protected int dodge;
+    public int AR;
+    public int SR;
+    public int BAB;
+    public int dodge;
 
 
-    protected float poisonResist = 0;
+    public float poisonResist = 0;
     protected int poisonDamage = 0;
     protected int poisonRounds = 0;
 
-    protected float fireResist = 0;
+    public float fireResist = 0;
     protected int fireDamage = 0;
 
-    protected float slowResist = 0;
+    public float slowResist = 0;
     protected int slowRounds = 0;
     protected int slowAmount = 0;
     protected int prevInitiative;
 
-    protected float stunResist = 0;
+    public float stunResist = 0;
     protected int stunRounds = 0;
     protected bool stunned = false;
 
-    protected float blindResist = 0;
-    protected float dazeResist = 0;
+    public float blindResist = 0;
+    public float dazeResist = 0;
     protected int missRounds = 0;
     protected bool blinded = false;
     protected bool dazed = false;
 
-    protected float possessResist = 0;
+    public float possessResist = 0;
     protected bool possessed = false;
     protected int possessedRounds = 0;
 

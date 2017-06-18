@@ -6,7 +6,9 @@ using UnityEngine;
 public class Sorcerer : Classes {
 
 	// Use this for initialization
-	public Sorcerer () {
+	public Sorcerer (string name) {
+        this.name = name;
+
         Str = 6 + (Roll.d6() - 3);
         Dex = 10 + (Roll.d6() - 3);
         Con = 8 + (Roll.d6() - 3);
