@@ -68,49 +68,32 @@ public class PlayerStats : MonoBehaviour {
     public void UpdateStats(Classes character) {
         charName.text = character.name;
 
-        Str.text = TwoDigit(character.Str);
-        Dex.text = TwoDigit(character.Dex);
-        Con.text = TwoDigit(character.Con);
-        Int.text = TwoDigit(character.Int);
-        Will.text = TwoDigit(character.Will);
-        End.text = TwoDigit(character.End);
+        Str.text = Helper.TwoDigit(character.Str);
+        Dex.text = Helper.TwoDigit(character.Dex);
+        Con.text = Helper.TwoDigit(character.Con);
+        Int.text = Helper.TwoDigit(character.Int);
+        Will.text = Helper.TwoDigit(character.Will);
+        End.text = Helper.TwoDigit(character.End);
 
-        HP.text = TwoDigit(character.health);
-        Sanity.text = TwoDigit(character.sanity);
-        Speed.text = TwoDigit(character.speed);
-        Init.text = TwoDigit(character.initiative);
+        HP.text = Helper.TwoDigit(character.health);
+        Sanity.text = Helper.TwoDigit(character.sanity);
+        Speed.text = Helper.TwoDigit(character.speed);
+        Init.text = Helper.TwoDigit(character.initiative);
 
-        AR.text = TwoDigit(character.AR);
-        SR.text = TwoDigit(character.SR);
-        BAB.text = TwoDigit(character.BAB);
-        Dodge.text = TwoDigit(character.dodge);
+        AR.text = Helper.TwoDigit(character.AR);
+        SR.text = Helper.TwoDigit(character.SR);
+        BAB.text = Helper.TwoDigit(character.BAB);
+        Dodge.text = Helper.TwoDigit(character.dodge);
 
-        Stun.text = TwoDigitf(character.stunResist);
-        Fire.text = TwoDigitf(character.fireResist);
-        Poison.text = TwoDigitf(character.poisonResist);
-        Daze.text = TwoDigitf(character.dazeResist);
-        Blind.text = TwoDigitf(character.blindResist);
-        Slow.text = TwoDigitf(character.slowResist);
-        Possess.text = TwoDigitf(character.possessResist);
+        Stun.text = Helper.TwoDigitf(character.stunResist);
+        Fire.text = Helper.TwoDigitf(character.fireResist);
+        Poison.text = Helper.TwoDigitf(character.poisonResist);
+        Daze.text = Helper.TwoDigitf(character.dazeResist);
+        Blind.text = Helper.TwoDigitf(character.blindResist);
+        Slow.text = Helper.TwoDigitf(character.slowResist);
+        Possess.text = Helper.TwoDigitf(character.possessResist);
 
-        Level.text = TwoDigit(character.level);
-    }
-
-    private string TwoDigit(int i) {
-        string s = i + "";
-
-        if (s.Length < 2)
-            return "0" + s;
-
-        else if (s.Length > 2)
-            return s.Substring(s.Length - 3);
-
-        else
-            return s;
-    }
-
-    private string TwoDigitf(float f) {
-        return f + "";
+        Level.text = Helper.TwoDigit(character.level);
     }
 
     // Update is called once per frame

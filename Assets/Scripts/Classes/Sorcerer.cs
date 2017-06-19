@@ -27,6 +27,8 @@ public class Sorcerer : Classes {
 
         health = healthMax;
         sanity = sanityMax;
+
+        clas = "Sorcerer";
 	}
 
 

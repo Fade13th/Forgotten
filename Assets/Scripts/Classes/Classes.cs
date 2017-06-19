@@ -4,5 +4,5 @@ using UnityEngine;
 
 [System.Serializable]
 public class Classes : Entity {
-	
+    public string clas;
 }

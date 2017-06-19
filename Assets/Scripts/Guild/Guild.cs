@@ -13,7 +13,11 @@ public class Guild {
     }
 
     public void AddSorcerer() {
-        members.Add(new Sorcerer("FAESF AFEWFD"));
+        bool gender = (Roll.d2() == 0);
+
+        string name = NameGenerator.GenerateName(gender);
+
+        members.Add(new Sorcerer(name));
 
     }
 }

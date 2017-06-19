@@ -11,4 +11,21 @@ public static class Helper {
 
         return null;
     }
+
+    public static string TwoDigit(int i) {
+        string s = i + "";
+
+        if (s.Length < 2)
+            return "0" + s;
+
+        else if (s.Length > 2)
+            return s.Substring(s.Length - 3);
+
+        else
+            return s;
+    }
+
+    public static string TwoDigitf(float f) {
+        return f + "";
+    }
 }
