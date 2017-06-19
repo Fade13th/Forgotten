@@ -13,7 +13,7 @@ public class Guild {
     }
 
     public void AddSorcerer() {
-        bool gender = (Roll.d2() == 0);
+        bool gender = (Roll.d2() == 1);
 
         string name = NameGenerator.GenerateName(gender);
 

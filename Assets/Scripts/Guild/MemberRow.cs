@@ -37,6 +37,8 @@ public class MemberRow : MonoBehaviour {
     }
 
     public void Click() {
+        stats.GetComponent<CanvasGroup>().alpha = 1;
+        stats.GetComponent<CanvasGroup>().blocksRaycasts = true;
         stats.UpdateStats(character);
     }
 }
