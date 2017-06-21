@@ -17,6 +17,8 @@ public class Game {
         currDungeon = new Dungeon();
         guild = new Guild(character);
 
+        GameManager.game = this;
+
         LoadDetails();
 
     }

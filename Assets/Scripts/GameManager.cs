@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.K)) {
-            game.guild.AddSorcerer();
+            game.guild.AddMember();
         }
 
         if (Input.GetKeyDown(KeyCode.T)) {
