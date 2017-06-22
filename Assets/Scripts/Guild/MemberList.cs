@@ -27,7 +27,6 @@ public class MemberList : MonoBehaviour {
 
             r.transform.parent = content;
             r.transform.localPosition = new Vector3(0, y, 0);
-            print(r.transform.localPosition);
 
             y -= 72;
             r.Setup(member);

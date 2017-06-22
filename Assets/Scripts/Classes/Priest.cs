@@ -30,7 +30,7 @@ public class Priest : Classes {
     }
 
 
-    protected override void UpdateStats() {
+    public override void UpdateStats() {
         base.UpdateStats();
 
         AR = 7 + (Str / 2);

@@ -25,6 +25,9 @@ public class Sorcerer : Classes {
 
         UpdateStats();
 
+        healthMax = Mathf.Max(6, Roll.RollDie(hitDie, hitDieCount));
+        sanityMax = Mathf.Max(6, Roll.RollDie(sanityDie, sanityDieCount));
+
         health = healthMax;
         sanity = sanityMax;
 
@@ -32,7 +35,7 @@ public class Sorcerer : Classes {
 	}
 
 
-    protected override void UpdateStats() {
+    public override void UpdateStats() {
         base.UpdateStats();
 
         AR = 7 + (Str/2);
@@ -40,8 +43,5 @@ public class Sorcerer : Classes {
         BAB = 0;
         dodge = (Dex - 10)/2;
         initiative = Mathf.Max(dodge, (Will/4));
-
-        healthMax = Mathf.Max(6, Roll.RollDie(hitDie, hitDieCount));
-        sanityMax = Mathf.Max(6, Roll.RollDie(sanityDie, sanityDieCount));
     }
 }

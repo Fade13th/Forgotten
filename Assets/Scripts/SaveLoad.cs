@@ -15,7 +15,6 @@ public static class SaveLoad {
         List<Game> copy = new List<Game>();
 
         foreach (Game g in SaveLoad.savedGames) {
-            MonoBehaviour.print(g);
             if (g.name == GameManager.game.name) {
                 copy.Add(g);
             }

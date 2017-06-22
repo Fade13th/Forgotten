@@ -6,12 +6,12 @@ using UnityEngine;
 public class Entity {
     public string name;
 
-    [SerializeField] public int Str; //Melee damage and natural armour
-    [SerializeField] public int Dex; //Ranged weapon damage and dodge
-    [SerializeField] public int Con; //Health
-	[SerializeField] public int Int; //Magic resist and damage
-    [SerializeField] public int Will; //Stamina and sanity
-    [SerializeField] public int End; //Resistance to effects and sanity
+    public int Str; //Melee damage and natural armour
+    public int Dex; //Ranged weapon damage and dodge
+    public int Con; //Health
+	public int Int; //Magic resist and damage
+    public int Will; //Stamina and sanity
+    public int End; //Resistance to effects and sanity
 
     public int speed;
 
@@ -192,8 +192,27 @@ public class Entity {
 
     }
 
-    protected virtual void UpdateStats() {
+    public virtual void UpdateStats() {
 
     }
-	
+
+    public void AddStats(int Str, int Dex, int Con, int Int, int Will, int End) {
+        this.Str = Mathf.Max(0, Str);
+        this.Dex = Mathf.Max(0, Dex);
+        this.Con = Mathf.Max(0, Con);
+        this.Int = Mathf.Max(0, Int);
+        this.Will = Mathf.Max(0, Will);
+        this.End = Mathf.Max(0, End);
+    }
+
+    public void AddResistences(float stun, float fire, float poison, float daze, float blind, float slow, float poss) {
+        stunResist += Mathf.Clamp(stun, 0, 1);
+        fireResist += Mathf.Clamp(fire, 0, 1);
+        poisonResist += Mathf.Clamp(poison, 0, 1);
+        dazeResist += Mathf.Clamp(daze, 0, 1);
+        blindResist += Mathf.Clamp(blind, 0, 1);
+        slowResist += Mathf.Clamp(slow, 0, 1);
+        possessResist += Mathf.Clamp(poss, 0, 1);
+    }
+
 }
