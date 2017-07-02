@@ -22,6 +22,7 @@ public class Sorcerer : Classes {
         sanityDieCount = 2;
 
         speed = 2;
+        BAB = 0;
 
         UpdateStats();
 
@@ -40,7 +41,6 @@ public class Sorcerer : Classes {
 
         AR = 7 + (Str/2);
         SR = (Int-10)/4;
-        BAB = 0;
         dodge = (Dex - 10)/2;
         initiative = Mathf.Max(dodge, (Will/4));
     }

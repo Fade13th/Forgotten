@@ -7,37 +7,29 @@ public class Arena : MonoBehaviour {
     public List<Tile> hazardTiles;
     public int hazardDC;
 
-    private int width = 800;
-
-    private int size = 10;
-    private List<Tile> tiles;
+    public List<Transform> tileSlots;
 
 	// Use this for initialization
 	void Start () {
-        int tileWidth = width / size;
-        int nextPos = 3;
-
-        for (int i = 0; i < size; i++) {
-            if (i < 3 || i > (size-4)) {
+        for (int i = 0; i < tileSlots.Count; i++) {
+            if ((i < 3 || i > (tileSlots.Count - 4)) || Roll.d20() < hazardDC) {
                 Tile t = Instantiate(ground);
-                t.transform.localPosition = new Vector3(nextPos, t.transform.localPosition.y, t.transform.localPosition.z);
-                tiles.Add(t);
+                t.transform.parent = tileSlots[i];
+                t.transform.localPosition = new Vector3(0, 0, 0);
+                t.transform.localEulerAngles = new Vector3(0, 0, 0);
             }
             else {
-                if (Roll.d20() < hazardDC) {
-                    int x = Random.Range(0, hazardTiles.Count);
-                    for (int j = 0; j < hazardTiles.Count; j++) {
-                        if (x < j) {
-                            Tile t = Instantiate(hazardTiles[j]);
-                            t.transform.localPosition = new Vector3(nextPos, t.transform.localPosition.y, t.transform.localPosition.z);
-                            tiles.Add(t);
-                            break;
-                        }
+                int x = Random.Range(0, hazardTiles.Count);
+                for (int j = 0; j < hazardTiles.Count; j++) {
+                    if (x <= j) {
+                        Tile t = Instantiate(hazardTiles[j]);
+                        t.transform.parent = tileSlots[i];
+                        t.transform.localPosition = new Vector3(0, 0, 0);
+                        t.transform.localEulerAngles = new Vector3(0, 0, 0);
+                        break;
                     }
                 }
             }
-
-            nextPos += 6 + tileWidth;
         }
 	}
 	

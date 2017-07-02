@@ -1,0 +1,41 @@
+0
+arcane ray		1 target 1d3
+
+1
+dazzling ray	1 target daze 2d4+1
+arcane blast	2x2 damage 1d3+1
+blinding ray	1 target blind 1d4+1
+
+2
+stunning ray	1 target stun 3d6+1
+arcane wall		h. wall 3d4
+blinding blast	2x2 blind 3d4+1
+arcane flare	3x3 damage 3d3
+blinding beams	2 target blind 3d6
+
+3
+glitter beam	1 target daze 5d6
+mind spike		1 target -1d4sanity 4d6
+ray of weakness	1 target -1d4Str 2d6+1
+ray of sluggishness 1 target -Dex
+ray of lunacy	1 target -Int
+ray of intolerance	1 target -End
+tectonic shift	h. stun 3d4+1
+solar flare		3x3 daze 3d6
+light show		3 target blind 4d6
+
+4
+ray of lethargy	1 target -1d6Str -1d6Dex 3d4+1 
+ray of instability	1 target -Int -End
+mind invasion	1 target poss -1d3sanity
+scatter force	3 target stun 4d6
+solar nova			3x3 blind 3d6
+glitter blast	2x2 daze 6d6
+
+5
+mindless fury	1 target poss +1d4Str +1d4Dex
+crippling ray	1 target stun -1d6Str -1d6Dex 3d6+1
+gaze of insanity	2 target poss -1d4sanity
+sunfall			3x3 stun 4d6
+crippling fissure	h. line -1d6Str -1d6Dex 4d6+1
+arcane lance	1 target daze 1d6/level

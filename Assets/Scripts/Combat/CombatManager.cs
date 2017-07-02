@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class CombatManager {
-    private static Arena arena;
-    private static Entity[] order;
-    private static Dictionary<Entity, Vector2> positions;
-    private static int turns, turnsGone;
+public class CombatManager : MonoBehaviour {
+    public Arena arena;
+    private Entity[] order;
+    private Dictionary<Entity, Vector2> positions;
+    private int turns, turnsGone;
+    private Party party;
+    private Group enemies;
 
-    public static void StartCombat(Arena a, Party party, Group enemies) {
+    public void StartCombat(Arena a, Party p, Group foes) {
         arena = a;
+        party = p;
+        enemies = foes;
 
         positions = new Dictionary<Entity, Vector2>();
         Dictionary<Entity, int> inspirations = new Dictionary<Entity, int>();
@@ -43,12 +47,46 @@ public static class CombatManager {
 
             inspirations.Remove(next);
         }
+
+        RunTurns();
     }
 
-    private static void Turn() {
+    private void RunTurns() {
+        while (true) {
+            bool playerAlive = false, enemyAlive = false;
+
+            foreach (Entity e in party.GetMembers()) {
+                if (e.alive) {
+                    playerAlive = true;
+                    break;
+                }
+            }
+
+            foreach (Entity e in enemies.GetMembers()) {
+                if (e.alive) {
+                    enemyAlive = true;
+                    break;
+                }
+            }
+
+            if (!playerAlive || !enemyAlive) return;
+            else Turn();
+        }
+    }
+
+    private void Turn() {
         turnsGone = 0;
         while ( turnsGone < turns) {
-
+            CombatUI.Turn(order[turnsGone]);
+            turnsGone++;
         }
+    }
+
+    public void UseAbility(Ability ability, Entity user, Entity[] targets) {
+        ability.Use(user, targets);
+    }
+
+    public void UseItem(Consumable item, Entity target) {
+        item.Use(target);
     }
 }

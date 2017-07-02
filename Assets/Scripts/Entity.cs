@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Entity {
     public string name;
+    public bool alive = true;
 
     public int Str; //Melee damage and natural armour
     public int Dex; //Ranged weapon damage and dodge
@@ -63,6 +64,48 @@ public class Entity {
     protected int possessedRounds = 0;
 
     protected bool guaranteedMiss = false;
+
+    public void TakePhysicalDamage(int amount, int DC) {
+        int save = Roll.d20() + dodge;
+
+        if (DC > save) {
+            int damage = Mathf.Max(0, amount - AR);
+
+            Damage(damage);
+        }
+    }
+
+    public void TakeMagicDamage(int amount, int DC) {
+        int save = Roll.d20() + ((Int -10)/2);
+
+        if (DC > save) {
+            int damage = Mathf.Max(0, amount - SR);
+
+            Damage(damage);
+        }
+    }
+
+    public void TakeSanityDamage(int amount, int DC) {
+        int sanityBonus = Mathf.Max(((Will - 10) / 2), ((End - 10) / 2));
+
+        int save = Roll.d20() + sanityBonus;
+
+        if (DC > save) {
+            //Sanity Damage
+        }
+    }
+
+    public int GetSpellDC() {
+        return BAB + ((Int - 10) / 2);
+    }
+
+    public int GetMeleeDC() {
+        return BAB + ((Str - 10) / 2);
+    }
+
+    public int GetRangedDC() {
+        return BAB + ((Dex - 10) / 2);
+    }
 
     protected void Damage(int amount) {
         health -= amount;

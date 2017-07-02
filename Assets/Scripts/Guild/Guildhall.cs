@@ -21,6 +21,7 @@ public class Guildhall : MonoBehaviour {
     public static void Show() {
         playerStats.UpdateStats(guild.leader);
         memberList.MakeList();
+        GameObject.Find("PartySelect").GetComponent<PartySelectUI>().MakeList();
     }
 	
 	// Update is called once per frame
