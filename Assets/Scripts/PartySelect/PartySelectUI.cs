@@ -9,24 +9,27 @@ public class PartySelectUI : MonoBehaviour {
     public RectTransform content;
     public static int selectAllowed = 4;
 
-    private static Entity selectedEntity;
+    private static Classes selectedEntity;
     private static int selected = 0;
-    private static Dictionary<Entity, Position> assigned;
+    private static Dictionary<Classes, Position> assigned;
 
     void Start() {
-        assigned = new Dictionary<Entity, Position>();
+        assigned = new Dictionary<Classes, Position>();
     }
 
-    public static void SelectEntity(Entity e) {
+    public static void SelectEntity(Classes e) {
         selectedEntity = e;
     }
 
     public static void SelectPosition(Position pos) {
         if (selectedEntity != null && selected < selectAllowed) {
+            
             if (assigned.ContainsKey(selectedEntity)) {
                 assigned[selectedEntity].Clear();
                 assigned.Remove(selectedEntity);
             }
+
+            Helper.RemoveByValue(assigned, pos);
 
             pos.Set(selectedEntity);
             assigned.Add(selectedEntity, pos);
@@ -60,4 +63,11 @@ public class PartySelectUI : MonoBehaviour {
         }
     }
 
+    public void SubmitParty() {
+        foreach(Classes e in assigned.Keys) {
+            GameManager.game.currDungeon.party.AddMember(e, assigned[e].getPos());
+        }
+
+        print("afafe");
+    }
 }

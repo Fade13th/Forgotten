@@ -8,8 +8,14 @@ public class Group {
     protected List<Entity> members;
     public Dictionary<Entity, Vector2> formation;
 
-    public void AddMember(Entity member) {
+    public Group() {
+        members = new List<Entity>();
+        formation = new Dictionary<Entity, Vector2>();
+    }
+
+    public void AddMember(Entity member, Vector2 pos) {
         members.Add(member);
+        formation.Add(member, pos);
         size++;
     }
 

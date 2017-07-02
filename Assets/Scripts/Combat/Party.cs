@@ -7,9 +7,13 @@ public class Party : Group {
 
     [SerializeField] protected int maxSize = 4;
 
-    public void AddMember(Classes member) {
+    public Party() : base() {
+    }
+
+    public void AddMember(Classes member, Vector2 pos) {
         if (size < maxSize) {
             members.Add(member);
+            formation.Add(member, pos);
             size++;
         }
     }    

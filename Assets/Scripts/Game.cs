@@ -15,6 +15,7 @@ public class Game {
         CreatePlayer(name);
 
         currDungeon = new Dungeon();
+        MonoBehaviour.print(currDungeon);
         guild = new Guild(character);
 
         GameManager.game = this;
