@@ -14,20 +14,18 @@ public class Game {
         this.name = name;
         CreatePlayer(name);
 
-        currDungeon = new Dungeon();
-        MonoBehaviour.print(currDungeon);
+        currDungeon = new Dungeon("Tileset_cave");
         guild = new Guild(character);
 
         GameManager.game = this;
-
-        LoadDetails();
-
     }
 
     public void LoadDetails() {
         Guildhall.SetGuild(guild);
         Guildhall.SetStats();
         Guildhall.Show();
+
+        currDungeon.StartCombat();
 
         current = this;
     }

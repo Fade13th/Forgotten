@@ -29,7 +29,7 @@ public class Position : MonoBehaviour {
         print(this);
     }
 
-    public Vector2 getPos() {
-        return new Vector2(x, y);
+    public Pair getPos() {
+        return new Pair(x, y);
     }
 }

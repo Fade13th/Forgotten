@@ -3,32 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CombatManager : MonoBehaviour {
-    public Arena arena;
-    private Entity[] order;
-    private Dictionary<Entity, Vector2> positions;
-    private int turns, turnsGone;
-    private Party party;
-    private Group enemies;
+    private static Entity[] order;
+    private static int turns, turnsGone;
+    private static Party party;
+    private static Group enemies;
+    private static CanvasGroup canvas;
 
-    public void StartCombat(Arena a, Party p, Group foes) {
-        arena = a;
+    void Start() {
+        canvas = GetComponent<CanvasGroup>();
+    }
+
+    public static void StartCombat(Party p, Group foes) {
+        canvas.alpha = 1;
+        canvas.blocksRaycasts = true;
+
         party = p;
         enemies = foes;
 
-        positions = new Dictionary<Entity, Vector2>();
-        Dictionary<Entity, int> inspirations = new Dictionary<Entity, int>();
+        Dictionary<Entity, int> initiatives = new Dictionary<Entity, int>();
 
         foreach(Classes e in party.GetMembers()) {
-            inspirations.Add(e, e.initiative);
-            positions.Add(e, party.formation[e]);
+            initiatives.Add(e, e.initiative);
+
+            Pair pos = party.formation[e];
+            Arena.addEntity(e, pos.x, pos.y);
         }
 
         foreach(Entity e in enemies.GetMembers()) {
-            inspirations.Add(e, e.initiative);
-            positions.Add(e, enemies.formation[e]);
+            initiatives.Add(e, e.initiative);
+
+            Pair pos = enemies.formation[e];
+            Arena.addEntity(e, pos.x, pos.y);
         }
 
-        turns = inspirations.Count;
+        turns = initiatives.Count;
 
         order = new Entity[turns];
 
@@ -36,22 +44,24 @@ public class CombatManager : MonoBehaviour {
             int max = 0;
             Entity next = null;
 
-            foreach(Entity e in inspirations.Keys) {
-                if (max == 0 || inspirations[e] > max || (inspirations[e] == max && e.Dex > next.Dex)) {
-                    max = inspirations[e];
+            foreach(Entity e in initiatives.Keys) {
+                if (max == 0 || initiatives[e] > max || (initiatives[e] == max && e.Dex > next.Dex)) {
+                    max = initiatives[e];
                     next = e;
                 }
             }
 
             order[i] = next;
 
-            inspirations.Remove(next);
+            initiatives.Remove(next);
         }
 
         RunTurns();
     }
 
-    private void RunTurns() {
+    private static void RunTurns() {
+        int x = 0;
+
         while (true) {
             bool playerAlive = false, enemyAlive = false;
 
@@ -71,10 +81,13 @@ public class CombatManager : MonoBehaviour {
 
             if (!playerAlive || !enemyAlive) return;
             else Turn();
+
+            if (x > 10) return;
+            x++;
         }
     }
 
-    private void Turn() {
+    private static void Turn() {
         turnsGone = 0;
         while ( turnsGone < turns) {
             CombatUI.Turn(order[turnsGone]);

@@ -8,6 +8,7 @@ public class Guildhall : MonoBehaviour {
 
     private static PlayerStats playerStats;
     private static MemberList memberList;
+    private static CanvasGroup canvas;
 
     public static void SetStats () {
         playerStats = GameObject.Find("PlayerStats").GetComponent<PlayerStats>();
@@ -15,17 +16,21 @@ public class Guildhall : MonoBehaviour {
 	}
 
     public static void SetGuild(Guild g) {
+        canvas = GameObject.Find("Guild").GetComponent<CanvasGroup>();
         guild = g;
     }
 
     public static void Show() {
+        canvas.alpha = 1;
+        canvas.blocksRaycasts = true;
+
         playerStats.UpdateStats(guild.leader);
         memberList.MakeList();
         GameObject.Find("PartySelect").GetComponent<PartySelectUI>().MakeList();
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public static void Hide() {
+        canvas.alpha = 0;
+        canvas.blocksRaycasts = false;
+    }
 }

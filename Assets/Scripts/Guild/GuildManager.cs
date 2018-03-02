@@ -58,4 +58,10 @@ public class GuildManager : MonoBehaviour {
         shopPanel.Hide();
         blacksmithPanel.Show();
     }
+
+    public static void GenerateDungeon() {
+        Dungeon dungeon = DungeonGenerator.Generate();
+
+        PartySelectUI.Show();
+    }
 }

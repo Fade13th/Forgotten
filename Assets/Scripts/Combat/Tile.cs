@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile : MonoBehaviour {
-    public Entity back, center, front;
+    public Entity e;
 
-    public bool Occupied(int pos) {
-        if (pos == 0 && back != null) return true;
-        else if (pos == 1 && center != null) return true;
-        else if (pos == 2 && front != null) return true;
-        else return false;
+    public bool Occupied() {
+        if (e == null) return false;
+        else return true;
     }
 
     public virtual void StandOn(Entity entity) {
-
+        e = entity;
     }
 
     public virtual void MoveThrough(Entity entity) {

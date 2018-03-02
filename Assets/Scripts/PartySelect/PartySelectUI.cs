@@ -12,9 +12,11 @@ public class PartySelectUI : MonoBehaviour {
     private static Classes selectedEntity;
     private static int selected = 0;
     private static Dictionary<Classes, Position> assigned;
+    private static CanvasGroup canvas;
 
     void Start() {
         assigned = new Dictionary<Classes, Position>();
+        canvas = GetComponent<CanvasGroup>();
     }
 
     public static void SelectEntity(Classes e) {
@@ -68,6 +70,17 @@ public class PartySelectUI : MonoBehaviour {
             GameManager.game.currDungeon.party.AddMember(e, assigned[e].getPos());
         }
 
-        print("afafe");
+        Guildhall.Hide();
+        Hide();
+    }
+
+    private void Hide() {
+        canvas.alpha = 0;
+        canvas.blocksRaycasts = false;
+    }
+
+    public static void Show() {
+        canvas.alpha = 1;
+        canvas.blocksRaycasts = true;
     }
 }

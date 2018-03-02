@@ -6,16 +6,16 @@ using UnityEngine;
 public class Group {
     protected int size = 0;
     protected List<Entity> members;
-    public Dictionary<Entity, Vector2> formation;
+    public Dictionary<Entity, Pair> formation;
 
     public Group() {
         members = new List<Entity>();
-        formation = new Dictionary<Entity, Vector2>();
+        formation = new Dictionary<Entity, Pair>();
     }
 
-    public void AddMember(Entity member, Vector2 pos) {
+    public void AddMember(Entity member, Pair coord) {
         members.Add(member);
-        formation.Add(member, pos);
+        formation.Add(member, coord);
         size++;
     }
 

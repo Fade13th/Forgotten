@@ -6,6 +6,7 @@ using UnityEngine;
 public class Entity {
     public string name;
     public bool alive = true;
+    public string sprite = "icon";
 
     public int Str; //Melee damage and natural armour
     public int Dex; //Ranged weapon damage and dodge

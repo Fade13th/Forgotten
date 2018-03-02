@@ -10,10 +10,10 @@ public class Party : Group {
     public Party() : base() {
     }
 
-    public void AddMember(Classes member, Vector2 pos) {
+    public void AddMember(Classes member, Pair coord) {
         if (size < maxSize) {
             members.Add(member);
-            formation.Add(member, pos);
+            formation.Add(member, coord);
             size++;
         }
     }    
